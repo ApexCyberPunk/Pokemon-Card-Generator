@@ -61,9 +61,9 @@ box-shadow: 0 20px 30px rgb(0, 0, 0, .15);
     font-weight: 600;
 }
 
-/* .types span {
-
-} */
+.types span {
+    padding: 5px 20px;
+}
 
 .stats {
     display: flex;

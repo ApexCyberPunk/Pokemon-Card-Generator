@@ -21,6 +21,8 @@ const url = "https://pokeapi.co/api/v2/pokemon/";
 const card = document.getElementById('card');
 const btn = document.getElementById('btn');
 
+
+
 let getPokeData = () => {
     // Generate random number between 1 and 150
     let id = Math.floor(Math.random() * 150) + 1;
@@ -34,24 +36,48 @@ let getPokeData = () => {
     .then((x) => x.json())
     .then((y) => {
         // generateCard(y)
-        console.log(y)
-        // name of pokemon
-        console.log(y.name)
-        // image of pokemon
-        console.log(y.sprites.front_default)
-        // get HP 
-        console.log(y.stats[0].base_stat)
-        // get attack
-        console.log(y.stats[1].base_stat)
-        // get defense
-        console.log(y.stats[2].base_stat)
-        // get speed
-        console.log(y.stats[5].base_stat)
-    //    generateCard(y)
+
+        generateCard(y)
     })
-   
- 
-  
+}
+
+let generateCard = (z) => {
+    // get data and assign it to variables
+    
+    const hp = z.stats[0].base_stat;
+    const imgSrc = z.sprites.other.dream_world.front_default;
+    const pokeName = z.name;
+    const statAttack = z.stats[1].base_stat;
+    const statDefense = z.stats[2].base_stat;
+    const statSpeed = z.stats[5].base_stat;
+
+    card.innerHTML = `
+    
+    <p class="hp">
+    <span>HP</span>
+    ${hp}
+</p>
+<img src="${imgSrc}"/>
+<h2 class="poke-name">${pokeName}</h2>
+<div class="types">
+    <span>type 1</span>
+    <span>type 2</span>
+</div>
+<div class="stats">
+    <div>
+        <h3>${statAttack}</h3>
+        <p>Attack</p>
+    </div>
+    <div>
+        <h3>${statDefense}</h3>
+        <p>Defense</p>
+    </div>
+    <div>
+        <h3>${statSpeed}</h3>
+        <p>Speed</p>
+    </div>
+</div>`
+
 }
 
 
